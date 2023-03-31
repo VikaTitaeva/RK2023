@@ -12,17 +12,26 @@ namespace _20._101_Titaeva_2.Entity
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+
     public partial class Entities : DbContext
     {
         public Entities()
             : base("name=Entities")
         {
         }
-    
+        private static Entities context;
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+        }
+        
+        public static Entities GetContext()
+        {
+            if (context ==null)
+            {
+            context = new Entities();
+            }
+          return context;
         }
     
         public virtual DbSet<Attestation> Attestation { get; set; }

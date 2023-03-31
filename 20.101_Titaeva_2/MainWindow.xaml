@@ -10,6 +10,7 @@
     <Grid>
         <DataGrid x:Name="Teachers_dg" d:ItemsSource="{d:SampleData ItemCount=5}" Margin="0,88,0,87" Height="NaN" SelectionChanged="DataGrid_SelectionChanged" Loaded="Teacher_Loaded"/>
         <Button x:Name="Search_btn" Content="Поиск" HorizontalAlignment="Left" Margin="329,377,0,0" VerticalAlignment="Top" Height="29" Width="123"/>
+        <TextBox x:Name="txtSearch" HorizontalAlignment="Left" Margin="129,377,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="127" Height="29" TextChanged="txtSearch_TextChanged"/>
 
     </Grid>
 </Window>

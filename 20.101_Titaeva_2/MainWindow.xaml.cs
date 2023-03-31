@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using _20._101_Titaeva_2.Entity;
 
 namespace _20._101_Titaeva_2
 {
@@ -31,11 +32,23 @@ namespace _20._101_Titaeva_2
         {
 
         }
+        private void UpdateData()
+        {
+            var result = Entities.GetContex().Product.ToList();//вводим переменную, которвя принимает данные из таблицы товаров
+            result = result.Where(p => p.ProductName.ToLower().Contains(txtSearch.Text.ToLower())).ToList();
+            Teachers_dg.ItemsSource = result;
+        }
 
         private void Teacher_Loaded(object sender, RoutedEventArgs e)
         {
+            //подключение данных к датагрид
             var query1 = from teachers in m.Teachers select new { teachers.IdTeachers, teachers.LastName, teachers.FirstName, teachers.Patronymic, teachers.Email, teachers.IdStatusTeachers, teachers.IdRole, teachers.IdSpeciality, teachers.Attestation, teachers.DisciplineTeachers, teachers.Role, teachers.Speciality, teachers.StatusTeacher, teachers.SystemUser};
-            Teachers_dg.ItemsSource = query1.ToList();
+            Teachers_dg.ItemsSource = query1.ToList(); //вывод информации
+        }
+
+        private void txtSearch_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            UpdateData();
         }
     }
 }
